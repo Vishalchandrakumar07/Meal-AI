@@ -18,7 +18,7 @@ llm = GoogleGenerativeAI(
 )
 
 prompt_template = PromptTemplate(
-    template="Give me an  example of a meal could be made using the following ingredients: {ingredients}",
+    template="Give me an  example of 3 meal could be made using the following ingredients: {ingredients}",
     input_variables={"ingredients"},
 )
 gangster_template = """Re-write the meals given below in the style of a New York mafia gangster:
@@ -61,7 +61,7 @@ user_prompt = st.text_input("Enter a comma-seperated list  of ingredients")
 
 if st.button("Generate") and user_prompt:
     with st.spinner("Generating..."):
-        output = overall_chain.run({"ingredients": user_prompt})
+        output = overall_chain.invoke({"ingredients": user_prompt})
 
         col1, col2 = st.columns(2)
         col1.write(output["meals"])
